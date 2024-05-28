@@ -1,0 +1,24 @@
+<!-- food_delivery/templates/food_delivery/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+
+<body>
+    <h1>Welcome to Food Delivery System</h1>
+    <h2>Customers</h2>
+    <ul>
+        {% for customer in customers %}
+        <li>
+            <a href="{% url 'customer_detail' customer.id %}">{{ customer.name }}</a> - {{ customer.category }} -
+            {{ customer.plan.name }}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

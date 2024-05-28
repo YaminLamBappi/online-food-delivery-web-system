@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Detail</title>
+    <link rel="stylesheet" href="{% static 'customer_detail.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>{{ customer.name }}</h1>
+        <p>Category: {{ customer.category }}</p>
+        <p>Plan: {{ customer.plan.name }}</p>
+        <p>Balance: {{ customer.balance }}</p>
+
+        <p>Current local time: {{ current_time }}</p>
+
+        <h2>Select your meal.</h2>
+        {% if show_both %}
+            <p>Last lunch status: {{ lunch_status }} and Last dinner status: {{ dinner_status }}</p>
+        {% else %}
+            {% if not show_lunch %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="lunch">
+                    <label for="lunch_checkbox">Lunch:</label>
+                    <input id="lunch_checkbox" type="checkbox" {% if customer.lunch_off %} checked {% endif %} onchange="this.form.submit();">
+                </form>
+            {% else %}
+                <p>Last lunch status: {{ lunch_status }}</p>
+            {% endif %}
+
+            {% if not show_dinner %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="dinner">
+                    <label for="dinner_checkbox">Dinner:</label>
+                    <input id="dinner_checkbox" type="checkbox" {% if customer.dinner_off %} checked {% endif %} onchange="this.form.submit();">
+                </form>
+            {% else %}
+                <p>Last dinner status: {{ dinner_status }}</p>
+            {% endif %}
+        {% endif %}
+
+        <form action="{% url 'place_order' customer.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Place Order</button>
+        </form>
+
+        {% if error_message %}
+            <div class="error">{{ error_message }}</div>
+            <a href="{% url 'add_subscription' customer.id %}"><button type="submit">Add Subscription</button></a>
+        {% endif %}
+
+    </div>
+</body>
+
+</html>

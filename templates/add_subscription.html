@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Subscription</title>
+    <link rel="stylesheet" href="{% static 'subscription.css' %}">
+
+</head>
+<body>
+    <div class="container">
+        <h2>Subscription Plans</h2>
+        <ul>
+            {% for plan in subscription_plans %}
+                <li>
+                    <span>{{ plan.name }} - ${{ plan.price }}</span>
+                    <form action="{% url 'pay_subscription' customer.id plan.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Pay</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
