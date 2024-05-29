@@ -88,21 +88,9 @@ Admin Interface
     Admins can view detailed reports on the number of orders placed.
     Admins can see the breakdown of basic and premium orders for both lunch and dinner.
 
-Sample Data
 
-Use the following sample customer data to test the application:
-Name	Category	Plan
-Customer 1	Basic	7 Days
-Customer 2	Basic	7 Days
-Customer 3	Premium	30 Days
-Customer 4	Basic	15 Days
-Customer 5	Basic	30 Days
-Customer 6	Premium	15 Days
-Customer 7	Premium	3 Days
-Customer 8	Premium	3 Days
-Customer 9	Basic	3 Days
-Customer 10	Basic	3 Days
-Contributing
+Contribution 
+Yamin Lam Bappi
 
 Contributions are welcome! Please fork the repository and submit a pull request for any enhancements or bug fixes.
 License
